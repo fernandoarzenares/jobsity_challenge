@@ -18,13 +18,11 @@ PORT = os.getenv("POSTGRES_PORT")
 engine = create_engine(f"postgresql://{USER}:{PWD}@{HOST}:{PORT}/{DB}")
 
 # Create psycopg2 connection (needed to run raw SQL)
-conn = psycopg2.connect(
-    dbname=DB,
-    user=USER,
-    password=PWD,
-    host=HOST,
-    port=PORT
-)
+conn = psycopg2.connect(dbname=DB, 
+			user=USER, 
+			password=PWD, 
+			host=HOST, 
+			port=PORT)
 cur = conn.cursor()
 
 # Create ingestion_status table if it doesn't exist
@@ -49,12 +47,11 @@ status_id = cur.fetchone()[0]
 conn.commit()
 
 try:
-    # Read CSV
-    df = pd.read_csv("trips.csv", encoding="cp1252")
-
-    # Insert data into trips table
-    df.to_sql("trips", engine, if_exists="append", index=False)
-
+    chunksize = 100_000
+    for i, chunk in enumerate(pd.read_csv("trips.csv", encoding="cp1252", chunksize=chunksize)):
+        print(f"Inserting chunk {i+1}...")
+        chunk.to_sql("trips", engine, if_exists="append", index=False, method='multi')
+    
     # Update status to success
     end_time = datetime.now()
     cur.execute(
@@ -66,7 +63,6 @@ try:
     print("Data ingestion completed successfully.")
 
 except Exception as e:
-    # Update status to failed
     end_time = datetime.now()
     cur.execute(
         "UPDATE ingestion_status SET finished_at = %s, status = %s WHERE id = %s;",
@@ -76,5 +72,5 @@ except Exception as e:
     print("Ingestion failed:", str(e))
 
 # Close connections
-cur.close()
-conn.close()
+    cur.close()
+    conn.close()
