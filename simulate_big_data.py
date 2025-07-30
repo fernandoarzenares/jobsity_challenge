@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from sqlalchemy import create_engine
 from faker import Faker
 import random
@@ -46,7 +45,7 @@ def generate_batch(n):
 # Insert in batches
 start = time.time()
 for i in range(0, TOTAL_ROWS, BATCH_SIZE):
-    print(f"🚀 Inserting batch {i // BATCH_SIZE + 1}...")
+    print(f"Inserting batch {i // BATCH_SIZE + 1}...")
     df = generate_batch(BATCH_SIZE)
     df.to_sql("trips", engine, if_exists="append", index=False, method='multi')
     print(f"Batch {i // BATCH_SIZE + 1} inserted.")
