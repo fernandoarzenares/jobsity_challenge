@@ -90,7 +90,30 @@ python simulate_big_data.py
 
 ---
 
-### 5. Bonus Queries
+### 5. Scalable Ingestion (Millions of Rows)
+
+The `ingest_trips.py` script is designed to handle large CSV files efficiently.
+
+Instead of reading the entire file into memory, it uses chunked ingestion with:
+
+```python
+pd.read_csv("trips.csv", chunksize=100_000)
+```
+
+This allows:
+
+- Stable memory usage even with millions of rows
+
+- Better performance by inserting batches with method='multi'
+
+- Production-level robustness
+
+---
+
+
+---
+
+### 6. Bonus Queries
 
 You can run the queries manually using a SQL client (pgAdmin, DBeaver, etc.):
 
