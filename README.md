@@ -35,7 +35,7 @@ This solution includes:
 
 - Docker & Docker Compose (make sure Docker Desktop is installed and running)
 - Python 3.10+
-- (Optional) pgAdmin if you want to inspect the database
+- (Optional) pgAdmin or DBeaver if you want to inspect the database
 
 ---
 
