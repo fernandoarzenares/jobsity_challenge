@@ -33,7 +33,7 @@ This solution includes:
 
 ### 1. Requirements
 
-- Docker & Docker Compose
+- Docker & Docker Compose (make sure Docker Desktop is installed and running)
 - Python 3.10+
 - (Optional) pgAdmin if you want to inspect the database
 
