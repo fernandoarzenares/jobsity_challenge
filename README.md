@@ -61,7 +61,7 @@ This will:
 
 ```bash
 # Create virtual environment
-python -m venv venv
+py -m venv venv
 venv\Scripts\activate         # On Windows
 # or
 source venv/bin/activate        # On Linux/Mac
