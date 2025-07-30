@@ -43,8 +43,8 @@ This solution includes:
 
 ```bash
 # Clone the repository
-git clone https://github.com/fernandoarzenares/takehome_jobsity.git
-cd takehome_jobsity
+git clone https://github.com/fernandoarzenares/jobsity_challenge.git
+cd jobsity_challenge
 
 # Start PostgreSQL in Docker
 docker-compose up -d
