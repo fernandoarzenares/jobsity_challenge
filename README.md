@@ -133,3 +133,10 @@ If deployed to AWS, the architecture would look like this:
 - **S3 bucket** – stores incoming CSV files for ingestion  
 - **Lambda + API Gateway** – to expose endpoints (if REST API needed)  
 - **CloudWatch** – to monitor ingestion and log events
+
+---
+
+### Video Demo
+
+Watch the project explanation here:
+[YouTube Demo Video](https://www.youtube.com/watch?v=f1jjmH7bfB4)
